@@ -11,7 +11,7 @@ export default function Navigation() {
 
   return (
         <NavigationContainer>
-          <MainStack.Navigator initialRouteName='Posts'>
+          <MainStack.Navigator initialRouteName='Registration'>
           <MainStack.Screen name='Registration'>
           {(props) => (
             <CommonLayout>

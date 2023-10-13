@@ -17,9 +17,10 @@ import {
 	createUserWithEmailAndPassword,
 	signInWithEmailAndPassword,
 	onAuthStateChanged,
-	updateProfile
+	updateProfile,
+  getAuth
 } from 'firebase/auth';
-import { auth } from './config';
+import FIREBASE_APP from '../firebase';
 
 
 const authStateChanged = async (onChange = () => {}) => {
@@ -34,6 +35,8 @@ export const RegistrationScreen = () => {
   const [email, setEmail] = useState("");
   const [psw, setPsw] = useState("");
 
+const auth = getAuth(FIREBASE_APP)
+
   const navigation = useNavigation();
 
   const handleChange = (text, setStateData) => {
@@ -42,7 +45,8 @@ export const RegistrationScreen = () => {
 
   const registerDB = async ({ email, password }) => {
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
+      const user = await createUserWithEmailAndPassword(auth, email, password);
+      console.log(user)
     } catch (error) {
       throw error;
     }
@@ -61,8 +65,7 @@ export const RegistrationScreen = () => {
     }
   };
 
-  const addImgHandler = ()=>{
-
+  const addImgHandler = ()=> {
   }
 
   return (
